@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import ProfessorList from "./components/ProfessorList";
 import ProfessorDetails from "./components/ProfessorDetails";
 import HomePage from "./pages/HomePage";
 import SignUpPage from "./pages/SignUpPage";
@@ -8,10 +7,8 @@ import LoginPage from "./pages/LoginPage";
 import CreateProfessor from "./pages/CreateProfessor";
 import LoggedInHomePage from "./pages/LoggedInHomePage";
 import CreateCourse from "./pages/CreateCourse";
-import CourseList from "./components/CourseList";
 import CourseDetails from "./components/CourseDetails";
 import PublicListingsPage from "./pages/PublicListingsPage";
-import LoggedInListingsPage from "./pages/LoggedInListingsPage";
 import SearchResults from "./components/SearchResults";
 
 const App = () => {
@@ -63,46 +60,37 @@ const App = () => {
         />
         
         <Route 
-          path="/home/listings" 
+          path="/home/professors/:id" 
           element={
             <ProtectedRoute>
-              <LoggedInListingsPage setIsLoggedIn={setIsLoggedIn} />
+              <ProfessorDetails isPublic={false} setIsLoggedIn={setIsLoggedIn} />
             </ProtectedRoute>
           }
         />
         
-        {/* Professor routes */}
         <Route 
-          path="/professors" 
+          path="/home/courses/:id" 
           element={
             <ProtectedRoute>
-              <ProfessorList />
+              <CourseDetails isPublic={false} setIsLoggedIn={setIsLoggedIn} />
             </ProtectedRoute>
           }
         />
+        
         <Route 
-          path="/create-professor" 
+          path="/home/create-professor" 
           element={
             <ProtectedRoute>
-              <CreateProfessor />
+              <CreateProfessor setIsLoggedIn={setIsLoggedIn} />
             </ProtectedRoute>
           }
         />
-
-        {/* Course routes */}
+        
         <Route 
-          path="/courses" 
+          path="/home/create-course" 
           element={
             <ProtectedRoute>
-              <CourseList />
-            </ProtectedRoute>
-          }
-        />
-        <Route 
-          path="/create-course" 
-          element={
-            <ProtectedRoute>
-              <CreateCourse />
+              <CreateCourse setIsLoggedIn={setIsLoggedIn} />
             </ProtectedRoute>
           }
         />

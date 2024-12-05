@@ -11,15 +11,38 @@ router.get('/search', async (req, res) => {
     }
 
     try {
-        const regex = new RegExp(`\\b${query}\\b`, 'i'); // Whole-word case-insensitive match
+        // Create a case-insensitive regex pattern that matches parts of words
+        const searchPattern = new RegExp(query, 'i');
 
-        const professors = await Professor.find({ name: regex });
+        // Search professors
+        const professors = await Professor.find({
+            $or: [
+                { name: searchPattern },
+                { department: searchPattern }
+            ]
+        });
+
+        // Search courses
         const courses = await Course.find({
-          $or: [
-              { name: regex },
-              { $expr: { $regexMatch: { input: { $concat: ['$prefix', ' ', { $toString: '$number' }] }, regex: `\\b${query}\\b`, options: 'i' } } }
-          ],
-      });
+            $or: [
+                { name: searchPattern },
+                { description: searchPattern },
+                // Handle course code searches (e.g., "CS 151" or "CS151")
+                {
+                    $expr: {
+                        $regexMatch: {
+                            input: { $concat: ['$prefix', ' ', { $toString: '$number' }] },
+                            regex: searchPattern,
+                            options: 'i'
+                        }
+                    }
+                },
+                // Search prefix alone
+                { prefix: searchPattern },
+                // Search number alone
+                { number: parseInt(query) || -1 } // -1 ensures no match if query isn't a number
+            ]
+        });
 
         res.json({ professors, courses });
     } catch (error) {

@@ -120,18 +120,5 @@
     box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
   }
   
-  @media (max-width: 768px) {
-    .search-input {
-      width: 90%;
-      padding: 1.2rem;
-      font-size: 1.3rem;
-    }
-  }
   
-  @media (max-width: 480px) {
-    .search-input {
-      width: 95%;
-      padding: 1rem;
-      font-size: 1.2rem;
-    }
-  }
+  

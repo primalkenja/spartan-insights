@@ -16,20 +16,11 @@
   
   /* Button styles */
   --button-padding: 0.625rem 1.25rem;
-  --button-font-size: 2rem;
+  --button-font-size: 1.5rem;
   --button-border-radius: 2rem;
   --button-border-width: 0.2rem;
   --button-gap: 1rem;
 }
-
-body {
-  transform: scale(0.75);
-  transform-origin: top left;
-  width: 133.33%;
-  height: 133.33%;
-  overflow-x: hidden; 
-}
-
 
 /* Global styles */
 body {

@@ -11,25 +11,25 @@ const HomePage = () => {
     setQuery(event.target.value);
   };
 
-  // Handle pressing 'Enter' to trigger the search
   const handleKeyDown = (event) => {
     if (event.key === 'Enter' && query.trim() !== '') {
-      navigate(`/search?query=${query}`);
+      navigate(`/listings?query=${query}`);
     }
   };
 
   const handleSearchClick = () => {
     if (query.trim() !== '') {
-      navigate(`/search?query=${query}`);
+      navigate(`/listings?query=${query}`);
     }
   };
+
   useEffect(() => {
     const title = document.querySelector('.home-page header h1');
     const subtitle = document.querySelector('.home-page header h2');
     let lastX = 0;
     let lastY = 0;
-    let lastX2 = 0;  // for h2
-    let lastY2 = 0;  // for h2
+    let lastX2 = 0;
+    let lastY2 = 0;
     let animationFrameId = null;
     const easeAmount = 0.08;
     
@@ -69,16 +69,14 @@ const HomePage = () => {
         // Calculate targets
         const targetX = -(deltaX / safeDistance) * normalizedOffset;
         const targetY = -(deltaY / safeDistance) * normalizedOffset;
-        const targetX2 = -(deltaX2 / safeDistance2) * normalizedOffset2 * 0.5; // Reduced effect for h2
-        const targetY2 = -(deltaY2 / safeDistance2) * normalizedOffset2 * 0.5; // Reduced effect for h2
+        const targetX2 = -(deltaX2 / safeDistance2) * normalizedOffset2 * 0.5;
+        const targetY2 = -(deltaY2 / safeDistance2) * normalizedOffset2 * 0.5;
         
         // Smooth animation loop
         const updateShadow = () => {
-          // Update h1
           lastX += (targetX - lastX) * easeAmount;
           lastY += (targetY - lastY) * easeAmount;
           
-          // Update h2
           lastX2 += (targetX2 - lastX2) * easeAmount;
           lastY2 += (targetY2 - lastY2) * easeAmount;
           
@@ -152,18 +150,18 @@ const HomePage = () => {
           <h2>FIND, RATE, AND REVIEW SJSU PROFESSORS AND COURSES</h2>
         </header>
         <div className="search-bar">
-        <input
-          type="text"
-          className="search-box"
-          placeholder="Search for professors or courses..."
-          value={query}
-          onChange={handleSearchChange}
-          onKeyDown={handleKeyDown}  // Handle 'Enter' key press
-        />
-      </div>
+          <input
+            type="text"
+            className="search-box"
+            placeholder="Search for professors or courses..."
+            value={query}
+            onChange={handleSearchChange}
+            onKeyDown={handleKeyDown}
+          />
+        </div>
         <div className="content-buttons">
-          <button className="button" onClick={() => navigate('/listings?view=courses')}>View Courses</button>
-          <button className="button" onClick={() => navigate('/listings?view=professors')}>View Professors</button>
+          <button className="view-courses" onClick={() => navigate('/listings?view=courses')}>View Courses</button>
+          <button className="view-professors" onClick={() => navigate('/listings?view=professors')}>View Professors</button>
         </div>
       </div>
     </section>
