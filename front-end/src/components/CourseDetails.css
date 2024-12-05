@@ -1,3 +1,24 @@
+.back-button {
+  background-color: var(--school-blue);
+  color: white;
+  padding: 1.5rem 3rem;
+  border: none;
+  border-radius: 8rem;
+  font-size: 2rem;
+  font-family: var(--global-font-family);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  position: fixed;
+  top: 1.5rem;
+  right: 2rem;
+  z-index: 1000;
+}
+
+.back-button:hover {
+  background-color: var(--school-gold);
+  font-weight: bold;
+}
+
 .course-details {
     max-width: 800px;
     margin: 0 auto;
@@ -18,7 +39,7 @@
   }
   
   .add-review-button {
-    background-color: #007bff;
+    background-color: var(--school-blue);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -28,7 +49,9 @@
   }
   
   .add-review-button:hover {
-    background-color: #0056b3;
+    background-color: var(--school-gold);
+    transform: scale(1.1);
+    transition: all 0.2 ease; 
   }
   
   .add-review-section {
@@ -60,7 +83,7 @@
   }
   
   .submit-button {
-    background-color: #28a745;
+    background-color: var(--school-blue);
     color: white;
     padding: 10px 20px;
     border: none;
@@ -70,7 +93,7 @@
   }
   
   .submit-button:hover {
-    background-color: #218838;
+    background-color: var(--school-gold);
   }
   
   .reviews-section {
@@ -109,19 +132,6 @@
   .back-button-container {
     text-align: center;
     margin-top: 20px;
-  }
-  
-  .back-button {
-    background-color: #6c757d;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .back-button:hover {
-    background-color: #5a6268;
   }
   
   .course-details-error {
@@ -182,3 +192,16 @@
     margin-bottom: 5px;
   }
 
+  .rating-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .rating-display p {
+    margin: 0;
+    font-size: 1.6rem;
+    color: #7f8c8d;
+  }

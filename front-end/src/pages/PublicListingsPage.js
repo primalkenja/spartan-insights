@@ -254,9 +254,9 @@ const PublicListingsPage = () => {
     <div className="listings-page">
       <header className="main-header">
         <div className="header-nav">
-          <h1>Spartan Insight</h1>
+          <h1>Spartan Insights</h1>
         </div>
-        <button className="primary-button" onClick={() => navigate('/')}>
+        <button className="back-home-button" onClick={() => navigate('/')}>
           Home
         </button>
       </header>

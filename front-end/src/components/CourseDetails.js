@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './CourseDetails.css';
+import StarRating from './StarRating';
 
 const getUserIdFromToken = () => {
   const token = localStorage.getItem('token');
@@ -30,7 +31,7 @@ const CourseDetails = () => {
   const [hasReviewed, setHasReviewed] = useState(false);
 
   const [isAddingReview, setIsAddingReview] = useState(false);
-  const [rating, setRating] = useState('');
+  const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const currentUserId = getUserIdFromToken();
 
@@ -79,7 +80,7 @@ const CourseDetails = () => {
         }
       );
 
-      setRating('');
+      setRating(0);
       setComment('');
       setIsAddingReview(false);
       fetchCourseDetails();
@@ -174,7 +175,11 @@ const CourseDetails = () => {
       <div className="course-header">
         <h1>{`${course.prefix || ''} ${course.number || ''} - ${course.name}`}</h1>
         <p>{course.description}</p>
-        <p>Rating: {course.rating ? course.rating.toFixed(1) : 'No rating yet'} / 5</p>
+        <div className="rating-display">
+          <p>Rating:</p>
+          <StarRating rating={course.rating || 0} readOnly={true} />
+          <p>({course.rating ? course.rating.toFixed(1) : 'No rating yet'} / 5)</p>
+        </div>
         {isLoggedIn && !hasReviewed && (
           <button
             className="add-review-button"
@@ -189,15 +194,10 @@ const CourseDetails = () => {
         <div className="add-review-section">
           <form onSubmit={handleSubmitReview} className="add-review-form">
             <label className="form-label">
-              Rating (1-5):
-              <input
-                type="number"
-                value={rating}
-                onChange={(e) => setRating(e.target.value)}
-                min="1"
-                max="5"
-                className="form-input"
-                required
+              Rating:
+              <StarRating 
+                rating={rating} 
+                onRatingChange={setRating} 
               />
             </label>
             <label className="form-label">
@@ -207,6 +207,7 @@ const CourseDetails = () => {
                 onChange={(e) => setComment(e.target.value)}
                 className="form-input"
                 required
+                placeholder="Share your experience with this course..."
               />
             </label>
             <button type="submit" className="submit-button">
@@ -225,7 +226,7 @@ const CourseDetails = () => {
             {reviews.map((review) => (
               <li key={review._id} className="review-item">
                 <p className="review-comment">"{review.comment}"</p>
-                <p className="review-rating">Rating: {review.rating} / 5</p>
+                <StarRating rating={review.rating} readOnly={true} />
                 <div className="review-footer">
                   <p className="review-user">
                     {review.user && review.user._id === currentUserId 
@@ -245,7 +246,7 @@ const CourseDetails = () => {
           className="back-button"
           onClick={() => navigate(isLoggedIn ? '/home' : '/listings')}
         >
-          Back to {isLoggedIn ? 'Home' : 'Listings'}
+          {isLoggedIn ? 'Home' : 'Listings'}
         </button>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './CreateProfessor.css'; // Reuse the same CSS for styling
+import './CreateForm.css';
 
 const CreateCourse = () => {
   const [prefix, setPrefix] = useState('');
@@ -23,9 +23,9 @@ const CreateCourse = () => {
         'http://localhost:5000/api/courses',
         { 
           prefix, 
-          number: parseInt(number, 10), // Ensure number is stored as an integer
+          number: parseInt(number, 10),
           name, 
-          prerequisites: prerequisites.split(',').map((p) => p.trim()), // Split and trim prerequisites
+          prerequisites: prerequisites.split(',').map((p) => p.trim()),
           description 
         },
         {
@@ -34,16 +34,21 @@ const CreateCourse = () => {
           },
         }
       );
-      navigate('/home?view=courses'); // Redirect to the courses list view
+      navigate('/home?view=courses');
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to create course.');
     }
   };
 
   return (
-    <div className="create-professor">
+    <div className="create-form">
+      <div className="header-actions">
+        <button className="home-button" onClick={() => navigate('/home')}>
+          Home
+        </button>
+      </div>
       <h1>Create Course</h1>
-      <form className="create-professor-form" onSubmit={handleSubmit}>
+      <form className="create-form-container" onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Course Prefix:</label>
           <input
@@ -94,7 +99,7 @@ const CreateCourse = () => {
           />
         </div>
         {error && <p className="error-message">{error}</p>}
-        <button type="submit" className="primary-button">
+        <button type="submit" className="submit-button">
           Create
         </button>
       </form>

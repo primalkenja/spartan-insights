@@ -9,7 +9,6 @@ import LoggedInHomePage from "./pages/LoggedInHomePage";
 import CreateCourse from "./pages/CreateCourse";
 import CourseDetails from "./components/CourseDetails";
 import PublicListingsPage from "./pages/PublicListingsPage";
-import SearchResults from "./components/SearchResults";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -47,7 +46,6 @@ const App = () => {
           path="/signup" 
           element={<SignUpPage />} 
         />
-        <Route path="/search" element={<SearchResults />} />
 
         {/* Protected routes */}
         <Route 

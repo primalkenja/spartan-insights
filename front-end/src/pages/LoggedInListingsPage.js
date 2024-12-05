@@ -152,10 +152,10 @@ const LoggedInListingsPage = ({ setIsLoggedIn }) => {
         <div className="no-results-container">
           <p>No professors found matching your search.</p>
           <button
-            className="tiny-link"
+            className="add-button"
             onClick={() => navigate('/home/create-professor')}
           >
-            + Add Professor
+            Add Professor
           </button>
         </div>
       );
@@ -164,10 +164,10 @@ const LoggedInListingsPage = ({ setIsLoggedIn }) => {
         <div className="no-results-container">
           <p>No courses found matching your search.</p>
           <button
-            className="tiny-link"
+            className="add-button"
             onClick={() => navigate('/home/create-course')}
           >
-            + Add Course
+            Add Course
           </button>
         </div>
       );
@@ -179,43 +179,39 @@ const LoggedInListingsPage = ({ setIsLoggedIn }) => {
     
     return filteredProfessors.length > 0 ? (
       filteredProfessors.map((professor) => (
-        <div key={professor._id} className="professor-item">
+        <button
+          key={professor._id}
+          className="professor-item"
+          onClick={() => navigate(`/home/professors/${professor._id}`)}
+        >
           <div className="professor-details">
             <p className="professor-name">{professor.name}</p>
             <p className="professor-department">Department: {professor.department}</p>
           </div>
-          <button
-            className="view-details-button"
-            onClick={() => navigate(`/home/professors/${professor._id}`)}
-          >
-            View Details
-          </button>
-        </div>
+        </button>
       ))
     ) : (
       searchQuery.trim() !== '' && renderNoResultsMessage()
     );
   };
-
+  
   const renderCourses = () => {
     const filteredCourses = filterItems(courses, searchQuery, 'courses');
     
     return filteredCourses.length > 0 ? (
       filteredCourses.map((course) => (
-        <div key={course._id} className="course-item">
+        <button
+          key={course._id}
+          className="course-item"
+          onClick={() => navigate(`/home/courses/${course._id}`)}
+        >
           <div className="course-details">
             <h3 className="course-title">
               {`${course.prefix || 'N/A'} ${course.number || '000'} - ${course.name || 'Unnamed Course'}`}
             </h3>
             <p className="course-description">{course.description || 'No description available.'}</p>
           </div>
-          <button
-            className="view-details-button"
-            onClick={() => navigate(`/home/courses/${course._id}`)}
-          >
-            View Details
-          </button>
-        </div>
+        </button>
       ))
     ) : (
       searchQuery.trim() !== '' && renderNoResultsMessage()

@@ -113,7 +113,6 @@ const SignUpPage = () => {
               title="Please use your SJSU email address"
               required 
             />
-            <small className="email-hint">Must be a valid @sjsu.edu email address</small>
           </div>
           <div className="form-group">
             <label>Password:</label>

@@ -1,124 +1,52 @@
-/* Container styles */
 .logged-in-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Header styles */
-  header {
-    padding: 20px;
-    background-color: var(--school-gold);
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  header button {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: var(--school-blue);
-  }
-  
-  header h1 {
-    margin: 0;
-    color: var(--school-blue);
-  }
-  
-  /* Main content styles */
-  .main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    position: relative;
-  }
-  
-  /* Toggle buttons styles */
-  .toggle-buttons {
-    margin-bottom: 20px;
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-  }
-  
-  .transition-button {
-    padding: 10px 20px;
-    border: 2px solid var(--school-blue);
-    border-radius: 5px;
-    cursor: pointer;
-    background: white;
-    color: var(--school-blue);
-    font-weight: bold;
-    position: relative;
-    overflow: hidden;
-    transition: color 0.3s ease;
-  }
-  
-  .transition-button.active {
-    background: var(--school-blue);
-    color: white;
-  }
-  
-  /* Content section styles */
-  .content-section {
-    position: relative;
-    min-height: calc(100vh - 200px);
-    overflow: hidden;
-  }
-  
-  .content-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .view-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transform: translateX(20px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    pointer-events: none;
-  }
-  
-  .view-container.active {
-    opacity: 1;
-    transform: translateX(0);
-    pointer-events: auto;
-  }
-  
-  .transitioning .view-container {
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-  
-  .search-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .search-input {
-    width: 70%;
-    max-width: 60rem;
-    padding: 1.5rem;
-    border-radius: 8rem;
-    border: none;
-    outline: none;
-    font-size: 1.5rem;
-    font-family: var(--global-font-family);
-    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-  
-  .search-input:focus {
-    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
-  }
-  
-  
-  
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.logged-in-container header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  padding: 20px;
+}
+
+.logged-in-container h1 {
+  font-size: 9rem;
+  color: var(--school-blue);
+  font-weight: bold;
+  margin: 0;
+}
+
+.header-button {
+  position: fixed;
+  top: 1.5rem;
+  right: 2rem;
+  z-index: 1000;
+}
+
+.header-button button {
+  background-color: var(--school-blue);
+  color: white;
+  padding: 1.5rem 3rem;
+  border: none;
+  border-radius: 8rem;
+  font-size: 2rem;
+  font-family: var(--global-font-family);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.header-button button:hover {
+  background-color: var(--school-gold);
+  font-weight: bold;
+}
+
+.main-content {
+  width: 100%;
+}

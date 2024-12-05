@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './CreateProfessor.css';
+import './CreateForm.css';
 
 const CreateProfessor = () => {
   const [name, setName] = useState('');
@@ -25,16 +25,21 @@ const CreateProfessor = () => {
           },
         }
       );
-      navigate('/home'); // Redirect to the LoggedInHomePage route
+      navigate('/home');
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to create professor.');
     }
   };
 
   return (
-    <div className="create-professor">
+    <div className="create-form">
+      <div className="header-actions">
+        <button className="home-button" onClick={() => navigate('/home')}>
+          Home
+        </button>
+      </div>
       <h1>Create Professor</h1>
-      <form className="create-professor-form" onSubmit={handleSubmit}>
+      <form className="create-form-container" onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Name:</label>
           <input
@@ -56,7 +61,7 @@ const CreateProfessor = () => {
           />
         </div>
         {error && <p className="error-message">{error}</p>}
-        <button type="submit" className="primary-button">
+        <button type="submit" className="submit-button">
           Create
         </button>
       </form>
