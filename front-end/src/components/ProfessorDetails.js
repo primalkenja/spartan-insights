@@ -245,7 +245,7 @@ const ProfessorDetails = () => {
           className="back-button"
           onClick={() => navigate(isLoggedIn ? '/home' : '/listings')}
         >
-          {isLoggedIn ? 'Home' : 'Listings'}
+          Home
         </button>
       </div>
     </div>
